@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="论文助手 — 毕业论文通关工具。参考文献格式化(GB/T 7714)、格式检查、进度管理、致谢生成、答辩准备。">
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="论文助手">
+    <link rel="manifest" href="./manifest.json">
+    <link rel="apple-touch-icon" href="./assets/icon-192.png">
+    <title>论文助手 — 毕业论文通关工具</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <!-- 背景装饰 -->
+    <div class="bg-decoration">
+        <div class="bg-grain"></div>
+        <div class="bg-orb orb-1"></div>
+        <div class="bg-orb orb-2"></div>
+    </div>
+
+    <!-- 侧边栏 -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <span class="logo-mark">¶</span>
+                <div class="logo-text">
+                    <span class="logo-title">论文助手</span>
+                    <span class="logo-subtitle">Thesis Companion</span>
+                </div>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <button class="side-btn active" data-tool="reference">
+                <span class="side-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><line x1="8" y1="7" x2="16" y2="7"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                </span>
+                <span class="side-label">参考文献</span>
+            </button>
+            <button class="side-btn" data-tool="checklist">
+                <span class="side-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                </span>
+                <span class="side-label">格式检查</span>
+            </button>
+            <button class="side-btn" data-tool="timeline">
+                <span class="side-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="22"/><polyline points="17 5 12 2 7 5"/><polyline points="17 19 12 22 7 19"/></svg>
+                </span>
+                <span class="side-label">进度管理</span>
+            </button>
+            <button class="side-btn" data-tool="acknowledge">
+                <span class="side-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </span>
+                <span class="side-label">致谢生成</span>
+            </button>
+            <button class="side-btn" data-tool="defense">
+                <span class="side-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </span>
+                <span class="side-label">答辩准备</span>
+            </button>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="shortcut-hint" title="快捷键 Ctrl+1~5 切换工具">⌨️ Ctrl+1~5</div>
+            <button class="theme-toggle" id="themeToggle" aria-label="切换主题">
+                <span class="theme-icon-sun">☀️</span>
+                <span class="theme-icon-moon">🌙</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- 主内容区 -->
+    <main class="main-area">
+
+        <!-- ===== 参考文献格式化 ===== -->
+        <section class="tool-panel active" id="panel-reference">
+            <header class="panel-header">
+                <h1>参考文献格式化</h1>
+                <p>支持 GB/T 7714-2015 标准，自动识别文献类型，一键生成规范引用</p>
+            </header>
+
+            <!-- 文献类型选择 -->
+            <div class="ref-type-tabs">
+                <button class="ref-type-btn active" data-type="J">期刊论文 [J]</button>
+                <button class="ref-type-btn" data-type="M">专著 [M]</button>
+                <button class="ref-type-btn" data-type="D">学位论文 [D]</button>
+                <button class="ref-type-btn" data-type="C">会议论文 [C]</button>
+                <button class="ref-type-btn" data-type="EB">电子资源 [EB/OL]</button>
+                <button class="ref-type-btn" data-type="P">专利 [P]</button>
+            </div>
+
+            <!-- 输入表单 -->
+            <div class="ref-form" id="refForm">
+                <!-- 动态表单内容 -->
+            </div>
+
+            <div class="ref-actions">
+                <button class="btn btn-primary" id="addReference">
+                    <span>＋</span> 添加到列表
+                </button>
+                <button class="btn btn-ghost" id="clearRefForm">
+                    清空表单
+                </button>
+            </div>
+
+            <!-- 生成的引用列表 -->
+            <div class="ref-list-section" id="refListSection">
+                <div class="ref-list-header">
+                    <h2>参考文献列表</h2>
+                    <span class="ref-count" id="refCount">0 条</span>
+                </div>
+                <div class="ref-list" id="refList">
+                    <div class="empty-state">
+                        <div class="empty-icon">📚</div>
+                        <p>尚未添加参考文献</p>
+                        <p class="empty-hint">填写信息后点击"添加到列表"</p>
+                    </div>
+                </div>
+                <div class="ref-list-actions" id="refListActions" style="display:none;">
+                    <button class="btn btn-outline" id="copyAllRefs">📋 复制全部</button>
+                    <button class="btn btn-outline" id="exportRefs">📥 导出文本</button>
+                    <button class="btn btn-ghost" id="clearAllRefs">清空列表</button>
+                </div>
+            </div>
+
+            <!-- 格式预览提示 -->
+            <div class="format-help">
+                <details>
+                    <summary>📖 GB/T 7714-2015 格式说明</summary>
+                    <div class="format-help-content">
+                        <p><strong>期刊论文 [J]：</strong>作者. 题名[J]. 刊名, 年, 卷(期): 起止页码.</p>
+                        <p><strong>专著 [M]：</strong>作者. 书名[M]. 出版地: 出版社, 出版年.</p>
+                        <p><strong>学位论文 [D]：</strong>作者. 题名[D]. 保存地点: 保存单位, 年份.</p>
+                        <p><strong>会议论文 [C]：</strong>作者. 题名[C]. 会议名称, 会议地点, 会议日期.</p>
+                        <p><strong>电子资源 [EB/OL]：</strong>作者. 题名[EB/OL]. (发布日期)[引用日期]. 获取和访问路径.</p>
+                        <p><strong>专利 [P]：</strong>专利所有者. 专利题名: 专利号[P]. 公告日期.</p>
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- ===== 格式检查清单 ===== -->
+        <section class="tool-panel" id="panel-checklist">
+            <header class="panel-header">
+                <h1>论文格式检查清单</h1>
+                <p>逐项检查，确保论文格式符合学校要求</p>
+            </header>
+
+            <div class="checklist-stats">
+                <div class="stat-card">
+                    <span class="stat-number" id="checkedCount">0</span>
+                    <span class="stat-label">已完成</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="totalChecks">0</span>
+                    <span class="stat-label">总检查项</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="checkPercent">0%</span>
+                    <span class="stat-label">完成率</span>
+                </div>
+            </div>
+
+            <div class="checklist-categories" id="checklistCategories">
+                <!-- 动态生成 -->
+            </div>
+        </section>
+
+        <!-- ===== 进度管理 ===== -->
+        <section class="tool-panel" id="panel-timeline">
+            <header class="panel-header">
+                <h1>论文进度管理</h1>
+                <p>从开题到答辩，可视化追踪论文写作全过程</p>
+            </header>
+
+            <div class="timeline-overall">
+                <div class="progress-bar-wrap">
+                    <div class="progress-bar" id="overallProgress" style="width: 0%"></div>
+                </div>
+                <span class="progress-text" id="overallProgressText">0%</span>
+            </div>
+
+            <div class="timeline-phases" id="timelinePhases">
+                <!-- 动态生成 -->
+            </div>
+
+            <div class="timeline-deadline">
+                <h3>📅 答辩日期</h3>
+                <div class="deadline-input-row">
+                    <input type="date" id="defenseDate" class="input">
+                    <button class="btn btn-primary" id="saveDefenseDate">设置</button>
+                </div>
+                <div class="deadline-countdown" id="deadlineCountdown"></div>
+            </div>
+        </section>
+
+        <!-- ===== 致谢生成器 ===== -->
+        <section class="tool-panel" id="panel-acknowledge">
+            <header class="panel-header">
+                <h1>致谢生成器</h1>
+                <p>智能生成论文致谢，可自定义修改润色</p>
+            </header>
+
+            <div class="acknowledge-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>你的姓名</label>
+                        <input type="text" id="ackName" class="input" placeholder="你的名字">
+                    </div>
+                    <div class="form-group">
+                        <label>导师姓名</label>
+                        <input type="text" id="ackAdvisor" class="input" placeholder="导师姓名">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>论文题目</label>
+                    <input type="text" id="ackTitle" class="input" placeholder="你的论文题目">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>学校名称</label>
+                        <input type="text" id="ackSchool" class="input" placeholder="你的学校">
+                    </div>
+                    <div class="form-group">
+                        <label>学院/专业</label>
+                        <input type="text" id="ackMajor" class="input" placeholder="你的专业">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>想要特别感谢的人（用逗号分隔）</label>
+                    <input type="text" id="ackSpecial" class="input" placeholder="父母, 室友张三, 女朋友李四">
+                </div>
+                <div class="form-group">
+                    <label>致谢风格</label>
+                    <div class="style-options">
+                        <button class="style-btn active" data-style="warm">温暖真挚</button>
+                        <button class="style-btn" data-style="formal">正式严谨</button>
+                        <button class="style-btn" data-style="simple">简洁朴素</button>
+                        <button class="style-btn" data-style="literary">文艺清新</button>
+                    </div>
+                </div>
+                <button class="btn btn-primary" id="generateAck">✨ 生成致谢</button>
+            </div>
+
+            <div class="acknowledge-output" id="acknowledgeOutput" style="display:none;">
+                <div class="output-header">
+                    <h2>生成的致谢</h2>
+                    <div class="output-actions">
+                        <button class="btn btn-outline btn-sm" id="copyAck">📋 复制</button>
+                        <button class="btn btn-outline btn-sm" id="regenerateAck">🔄 换一个</button>
+                    </div>
+                </div>
+                <div class="output-content" id="ackContent"></div>
+            </div>
+        </section>
+
+        <!-- ===== 答辩准备 ===== -->
+        <section class="tool-panel" id="panel-defense">
+            <header class="panel-header">
+                <h1>答辩准备</h1>
+                <p>常见问题、PPT大纲、倒计时提醒，助你顺利通过答辩</p>
+            </header>
+
+            <div class="defense-grid">
+                <!-- PPT大纲 -->
+                <div class="defense-card">
+                    <h3>🎞️ 答辩PPT大纲</h3>
+                    <div class="ppt-outline">
+                        <div class="ppt-item" data-slide="1">
+                            <span class="ppt-num">01</span>
+                            <div>
+                                <strong>封面</strong>
+                                <p>论文题目、姓名、导师、学院</p>
+                            </div>
+                        </div>
+                        <div class="ppt-item" data-slide="2">
+                            <span class="ppt-num">02</span>
+                            <div>
+                                <strong>研究背景与意义</strong>
+                                <p>为什么选这个题？解决了什么问题？</p>
+                            </div>
+                        </div>
+                        <div class="ppt-item" data-slide="3">
+                            <span class="ppt-num">03</span>
+                            <div>
+                                <strong>文献综述</strong>
+                                <p>前人做了什么？有什么不足？</p>
+                            </div>
+                        </div>
+                        <div class="ppt-item" data-slide="4">
+                            <span class="ppt-num">04</span>
+                            <div>
+                                <strong>研究方法</strong>
+                                <p>用了什么方法？为什么用这个方法？</p>
+                            </div>
+                        </div>
+                        <div class="ppt-item" data-slide="5">
+                            <span class="ppt-num">05</span>
+                            <div>
+                                <strong>实验/分析</strong>
+                                <p>数据、图表、关键发现</p>
+                            </div>
+                        </div>
+                        <div class="ppt-item" data-slide="6">
+                            <span class="ppt-num">06</span>
+                            <div>
+                                <strong>结论与创新点</strong>
+                                <p>你的贡献是什么？</p>
+                            </div>
+                        </div>
+                        <div class="ppt-item" data-slide="7">
+                            <span class="ppt-num">07</span>
+                            <div>
+                                <strong>不足与展望</strong>
+                                <p>局限性 & 未来方向</p>
+                            </div>
+                        </div>
+                        <div class="ppt-item" data-slide="8">
+                            <span class="ppt-num">08</span>
+                            <div>
+                                <strong>致谢 & Q&A</strong>
+                                <p>感谢 + 请老师提问</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 常见问题 -->
+                <div class="defense-card">
+                    <h3>❓ 答辩高频问题 + 答题思路</h3>
+                    <div class="faq-list" id="faqList">
+                        <!-- 动态生成 -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- 答辩倒计时 -->
+            <div class="defense-card defense-timer-card">
+                <h3>⏰ 答辩倒计时</h3>
+                <div class="defense-timer" id="defenseTimer">
+                    <div class="timer-block">
+                        <span class="timer-num" id="defenseDays">--</span>
+                        <span class="timer-label">天</span>
+                    </div>
+                    <span class="timer-sep">:</span>
+                    <div class="timer-block">
+                        <span class="timer-num" id="defenseHours">--</span>
+                        <span class="timer-label">时</span>
+                    </div>
+                    <span class="timer-sep">:</span>
+                    <div class="timer-block">
+                        <span class="timer-num" id="defenseMins">--</span>
+                        <span class="timer-label">分</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 移动端导航 -->
+    <nav class="mobile-nav" id="mobileNav">
+        <button class="mob-btn active" data-tool="reference">
+            <span class="mob-icon">📚</span><span class="mob-label">引用</span>
+        </button>
+        <button class="mob-btn" data-tool="checklist">
+            <span class="mob-icon">✅</span><span class="mob-label">检查</span>
+        </button>
+        <button class="mob-btn" data-tool="timeline">
+            <span class="mob-icon">📊</span><span class="mob-label">进度</span>
+        </button>
+        <button class="mob-btn" data-tool="acknowledge">
+            <span class="mob-icon">💌</span><span class="mob-label">致谢</span>
+        </button>
+        <button class="mob-btn" data-tool="defense">
+            <span class="mob-icon">🎤</span><span class="mob-label">答辩</span>
+        </button>
+    </nav>
+
+    <!-- Toast -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="./js/reference.js"></script>
+    <script src="./js/checklist.js"></script>
+    <script src="./js/timeline.js"></script>
+    <script src="./js/acknowledge.js"></script>
+    <script src="./js/defense.js"></script>
+    <script src="./js/app.js"></script>
+    <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js');}</script>
+</body>
+</html>

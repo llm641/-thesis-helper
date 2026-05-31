@@ -1,0 +1,14 @@
+{
+  "name": "论文助手 - 毕业论文通关工具",
+  "short_name": "论文助手",
+  "description": "参考文献格式化(GB/T 7714)、格式检查、进度管理、致谢生成、答辩准备",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0f0f1a",
+  "theme_color": "#c9a96e",
+  "icons": [
+    { "src": "./assets/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "./assets/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
